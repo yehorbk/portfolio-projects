@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+    postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+        environment:
+            POSTGRES_USER: superburger_user
+            POSTGRES_PASSWORD: superburger_password
+            POSTGRES_DB: superburger
