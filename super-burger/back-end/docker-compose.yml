@@ -5,6 +5,6 @@ services:
         ports:
           - 5432:5432
         environment:
-            POSTGRES_USER: superburger_user
-            POSTGRES_PASSWORD: superburger_password
-            POSTGRES_DB: superburger
+            POSTGRES_USER: super-burger-user
+            POSTGRES_PASSWORD: super-burger-password
+            POSTGRES_DB: super-burger
