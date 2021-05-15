@@ -12,7 +12,7 @@
 	<artifactId>super-burger</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>super-burger</name>
-	<description>Back-end for Super-Burger e-shop</description>
+	<description>Back-end for Super Burger e-shop</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<modelmapper.version>2.3.5</modelmapper.version>
