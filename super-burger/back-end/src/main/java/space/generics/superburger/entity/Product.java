@@ -22,8 +22,8 @@ import space.generics.superburger.entity.enums.ProductType;
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode()
-@ToString()
+@EqualsAndHashCode
+@ToString
 public class Product {
     
     @Id

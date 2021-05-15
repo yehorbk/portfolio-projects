@@ -14,9 +14,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @Builder
-@EqualsAndHashCode
-@ToString
-public class AddPromotionDto {
+@EqualsAndHashCode()
+@ToString()
+public class UpdatePromotionDto {
     
     @NotBlank(message = "The field 'title' cannot be null or empty")
     private String title;
