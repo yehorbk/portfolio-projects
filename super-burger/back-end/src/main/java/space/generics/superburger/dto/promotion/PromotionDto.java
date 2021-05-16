@@ -1,7 +1,7 @@
 package space.generics.superburger.dto.promotion;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@Builder
 @EqualsAndHashCode
 @ToString
 public class PromotionDto {
@@ -26,5 +25,7 @@ public class PromotionDto {
     private String actionSrc;
     
     private String imageSrc;
+    
+    private LocalDateTime expires;
     
 }
