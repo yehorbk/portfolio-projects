@@ -54,6 +54,7 @@ public class PromotionServiceImpl implements PromotionService {
     @Override
     public PromotionDto update(long id, UpdatePromotionDto dto) {
         Promotion promotion = this.findById(id);
+        this.modelMapper.map(dto, promotion);
         Promotion result = this.promotionRepository.save(promotion);
         return this.modelMapper.map(result, PromotionDto.class);
     }
@@ -65,7 +66,7 @@ public class PromotionServiceImpl implements PromotionService {
     }
 
     @Override
-    public List<PromotionDto> getAll() {
+    public List<PromotionDto> readAll() {
         Function<Promotion, PromotionDto> mapper = promotion ->
                 this.modelMapper.map(promotion, PromotionDto.class);
         List<Promotion> result = this.promotionRepository.findAll();

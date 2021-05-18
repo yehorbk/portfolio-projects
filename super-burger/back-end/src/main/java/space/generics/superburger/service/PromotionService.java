@@ -15,6 +15,6 @@ public interface PromotionService {
     
     void deleteById(long id);
     
-    List<PromotionDto> getAll();
+    List<PromotionDto> readAll();
     
 }

@@ -38,7 +38,7 @@ public class Promotion {
     private String actionSrc;
     
     @Column(name = "image_src", nullable = false)
-    private String imageSrc;
+    private String imageSrc = "stub-image";
     
     @Column(name = "expires")
     private LocalDateTime expires;

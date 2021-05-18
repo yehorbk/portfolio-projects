@@ -36,8 +36,7 @@ public class PromotionServiceImplTest {
     
     private static final long PROMOTION_ID = 1;
     private static final Promotion PROMOTION = new Promotion();
-    private static final List<Promotion> PROMOTIONS =
-            new ArrayList<>();
+    private static final List<Promotion> PROMOTIONS = new ArrayList<>();
     private static final PromotionDto PROMOTION_DTO = new PromotionDto();
     private static final AddPromotionDto ADD_PROMOTION_DTO =
             new AddPromotionDto();
@@ -51,24 +50,28 @@ public class PromotionServiceImplTest {
         PROMOTION.setDescription("description");
         PROMOTION.setActionSrc("actionSrc");
         PROMOTION.setImageSrc("imageSrc");
-        PROMOTION.setExpires(LocalDateTime.MIN);
+        PROMOTION.setExpires(LocalDateTime.now());
         PROMOTIONS.clear();
         PROMOTIONS.add(PROMOTION);
-        this.modelMapper.map(PROMOTION_DTO, PROMOTION);
-        this.modelMapper.map(ADD_PROMOTION_DTO, PROMOTION);
-        this.modelMapper.map(UPDATE_PROMOTION_DTO, PROMOTION);
+        this.modelMapper.map(PROMOTION, PROMOTION_DTO);
+        this.modelMapper.map(PROMOTION, ADD_PROMOTION_DTO);
+        this.modelMapper.map(PROMOTION, UPDATE_PROMOTION_DTO);
     }
     
     @BeforeEach
     public void setUpMockito() {
-        Mockito.when(this.promotionRepository.findById(PROMOTION_ID))
-                .thenReturn(Optional.of(PROMOTION));
-        Mockito.when(this.promotionRepository.save(PROMOTION))
-                .thenReturn(PROMOTION);
-        Mockito.doNothing().when(this.promotionRepository)
-                .delete(PROMOTION);
-        Mockito.when(this.promotionRepository.findAll())
-                .thenReturn(PROMOTIONS);
+        Mockito.doReturn(Optional.of(PROMOTION))
+                .when(this.promotionRepository)
+                .findById(PROMOTION_ID);
+        Mockito.doReturn(PROMOTION)
+                .when(this.promotionRepository)
+                .save(Mockito.any(Promotion.class));
+        Mockito.doNothing()
+                .when(this.promotionRepository)
+                .delete(Mockito.any(Promotion.class));
+        Mockito.doReturn(PROMOTIONS)
+                .when(this.promotionRepository)
+                .findAll();
     }
     
     @Test 
@@ -120,7 +123,7 @@ public class PromotionServiceImplTest {
     @Test
     public void testGetAll() {
         final int expected = PROMOTIONS.size();
-        final int actual = this.promotionService.getAll().size();
+        final int actual = this.promotionService.readAll().size();
         Assertions.assertEquals(expected, actual);   
     }
     
