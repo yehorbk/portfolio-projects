@@ -66,10 +66,11 @@ public class PromotionController {
     
     @ApiOperation("Upload promotion image")
     @PostMapping("/promotions/{id}/image")
-    public void updateImage(
+    public PromotionDto updateImage(
             @NotBlank @PathVariable long id,
             @RequestParam("file") MultipartFile file) {
-        // TODO
+        PromotionDto result = this.promotionService.updateImageById(id, file);
+        return result;
     }
     
 }

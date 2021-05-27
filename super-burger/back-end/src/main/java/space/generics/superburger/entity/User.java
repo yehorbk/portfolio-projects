@@ -62,6 +62,6 @@ public class User {
     private UserType type;
     
     @OneToMany(mappedBy = "customer")
-    private List<Order> orders; 
+    private List<Order> orders;
     
 }
