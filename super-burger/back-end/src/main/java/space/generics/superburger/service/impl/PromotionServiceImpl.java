@@ -2,37 +2,28 @@ package space.generics.superburger.service.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import org.modelmapper.ModelMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import space.generics.superburger.dto.promotion.AddPromotionDto;
 import space.generics.superburger.dto.promotion.PromotionDto;
 import space.generics.superburger.dto.promotion.UpdatePromotionDto;
 import space.generics.superburger.entity.Promotion;
+import space.generics.superburger.environment.MultipleModelMapper;
 import space.generics.superburger.exception.exceptions.EntityByValueNotFoundException;
 import space.generics.superburger.repository.PromotionRepository;
 import space.generics.superburger.service.FileService;
 import space.generics.superburger.service.PromotionService;
 
 @Service
+@AllArgsConstructor
 public class PromotionServiceImpl implements PromotionService {
 
     private final FileService fileService;
     
     private final PromotionRepository promotionRepository;
     
-    private final ModelMapper modelMapper;
-
-    public PromotionServiceImpl(
-            FileService fileService,
-            PromotionRepository promotionRepository,
-            ModelMapper modelMapper) {
-        this.fileService = fileService;
-        this.promotionRepository = promotionRepository;
-        this.modelMapper = modelMapper;
-    }
+    private final MultipleModelMapper modelMapper;
     
     Promotion findById(long id) {
         Optional<Promotion> optional = this.promotionRepository.findById(id);
@@ -82,12 +73,8 @@ public class PromotionServiceImpl implements PromotionService {
 
     @Override
     public List<PromotionDto> readAll() {
-        Function<Promotion, PromotionDto> mapper = promotion ->
-                this.modelMapper.map(promotion, PromotionDto.class);
         List<Promotion> result = this.promotionRepository.findAll();
-        return result.stream()
-                .map(mapper)
-                .collect(Collectors.toList());
+        return this.modelMapper.map(result, PromotionDto.class);
     }
     
 }
